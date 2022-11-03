@@ -39,7 +39,7 @@ function sortFunc(arr, select){
   else if(select == "151-001"){
     arr.sort((a, b) => b.num - a.num);
   }
-};  
+};
 
 function createElement(kino) {
   elList.innerHTML = "";
