@@ -33,11 +33,11 @@ function sortFunc(arr, select){
     })
   }
   
-  if(select == "01:30-23:40"){
-    arr.sort((a, b) => a.spawn_time.charCodeAt(0) - b.spawn_time.charCodeAt(0));
+  if(select == "001-151"){
+    arr.sort((a, b) => a.num - b.num);
   }
-  else if(select == "23:40-01:30"){
-    arr.sort((a, b) => b.spawn_time.charCodeAt(0) - a.spawn_time.charCodeAt(0));
+  else if(select == "151-001"){
+    arr.sort((a, b) => b.num - a.num);
   }
 };  
 
