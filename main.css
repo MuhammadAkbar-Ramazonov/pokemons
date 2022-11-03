@@ -1,0 +1,6 @@
+.site-input{
+  color: white!important;
+}
+.site-input::placeholder{
+  color: white!important;
+}
