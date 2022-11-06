@@ -19,31 +19,37 @@
         <h2 class="text-center fw-bold mb-5 text-bg-info">Pokemons</h2>
         <form class="mb-5 site-form mt-4" action="#" autocomplete="off" method="get">
           <div class="row ">
-            <div class="col-12 mb-2 col-lg-4">
-              <input class="py-3 p-lg-2 w-100 h-100 px-2 form-input site-input border-0 bg-success text-white js-input" type="search" placeholder="Enter your search move" aria-label="Enter your search move">
-            </div>
             <div class="col-12 mb-2 col-lg-3">
+              <input class="py-3 p-lg-2 w-100 h-100 px-2 form-input site-input border-0 bg-success text-white js-input" type="search" placeholder="Enter your search move ..." aria-label="Enter your search move">
+            </div>
+            <div class="col-12 mb-2 col-lg-1">
               <select class="py-3 p-lg-2 w-100 h-100 text-center site-select bg-success text-white text-white border-0 rounded-2" name="user_select">
                 <option value="All">All</option>
               </select>
             </div>
             <div class="col-12 mb-2 col-lg-3">
+              <input class="py-3 p-lg-2 w-100 h-100 px-2 form-input site-input border-0 bg-success text-white js-start-input" type="search" placeholder="Search move candy count from ..." aria-label="Search move candy count from ...">
+            </div>
+            <div class="col-12 mb-2 col-lg-3">
+              <input class="py-3 p-lg-2 w-100 h-100 px-2 form-input site-input border-0 bg-success text-white js-end-input" type="search" placeholder="Search move candy count to ..." aria-label="Search move candy count to ...">
+            </div>
+            <div class="col-12 mb-2 col-lg-1">
               <select class="py-3 p-lg-2 w-100 h-100 text-center site-select-sort bg-success text-white text-white border-0 rounded-2" name="user_select_sort">
                 <option>All</option>
                 <option value="A-Z">A-Z</option>
                 <option value="Z-A">Z-A</option>
-                <option value="001-151">001-151</option>
-                <option value="151-001">151-001</option>
+                <option value="001-151">from weight</option>
+                <option value="151-001">to weight</option>
               </select>
             </div> 
-            <div class="col-12 mb-2 col-lg-2">
+            <div class="col-12 mb-2 col-lg-1">
               <button class="py-3 p-lg-2 w-100 h-100 btn btn-success rounded-2" type="submit">Search</button>
             </div>
           </div>
         </form>
         
         <ul class="site-list d-flex align-items-center flex-wrap list-unstyled justify-content-center justify-content-lg-between">
-
+          
         </ul>
       </div>
     </div>
@@ -58,7 +64,12 @@
   
   <li class="pokemon-item d-flex flex-column justify-content-between align-items-center position-relative bg-gradient mb-4">
     <h3 class="pokemon-title d-block w-100 text-center text-white bg-success py-3"></h3>
-    <span class="pokemon-badge position-absolute badge bg-warning text-white"></span>
+    <div class="pokemon-badge-wrapper position-absolute badge bg-warning text-white" >id:
+      <span class="pokemon-badge"></span>
+    </div>
+    <div class="pokemon-candy-wrapper badge text-white position-absolute bg-warning ">Candy count:
+      <span class="pokemon-candy"></span>
+    </div>
     <img class="pokemon-img" src="" width="" height="">
     <time class="pokemon-time bg-warning text-white position-absolute time-styles"></time>
     <p class="pokemon-text bg-danger d-block w-100 py-3 text-center text-white m-0"></p>

@@ -1,5 +1,10 @@
-.pokemon-badge {
+.pokemon-badge-wrapper {
   bottom: 44px;
+  left: 104px;
+}
+.pokemon-candy-wrapper {
+  bottom: 44px;
+  right: 61px;
 }
 .pokemon-time {
   top: 51px;

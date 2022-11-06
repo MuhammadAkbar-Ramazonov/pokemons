@@ -5,6 +5,9 @@ const newPokemonFregment = document.createDocumentFragment();
 const elForm = document.querySelector(".site-form");
 const elSelect = document.querySelector(".site-select");
 const elFormInput = document.querySelector(".js-input");
+const elInputStart = document.querySelector(".js-start-input");
+const elInputEnd = document.querySelector(".js-end-input");
+
 const elSelectSort = document.querySelector(".site-select-sort");
 const weaknesSum = [];
 
@@ -34,10 +37,10 @@ function sortFunc(arr, select){
   }
   
   if(select == "001-151"){
-    arr.sort((a, b) => a.num - b.num);
+    arr.sort((a, b) => a.weight.charCodeAt(0) - b.weight.charCodeAt(0));
   }
   else if(select == "151-001"){
-    arr.sort((a, b) => b.num - a.num);
+    arr.sort((a, b) => b.weight.charCodeAt(0) - a.weight.charCodeAt(0));
   }
 };
 
@@ -57,6 +60,8 @@ function createElement(kino) {
     });
     elClonePekemon.querySelector(".pokemon-title").textContent = item.name;
     elClonePekemon.querySelector(".pokemon-badge").textContent = item.num;
+    elClonePekemon.querySelector(".pokemon-candy").textContent = item.candy_count;
+
     elClonePekemon.querySelector(".pokemon-img").src = item.img;
     elClonePekemon.querySelector(".pokemon-img").width = "350";
     elClonePekemon.querySelector(".pokemon-img").height = "350";
@@ -71,6 +76,7 @@ elForm.addEventListener("submit", function(evt){
   evt.preventDefault();
   
   
+elInputEnd
   const elSelctCatecoryValue = elSelect.value;
   const elFormInputValue = elFormInput.value.trim();
   const elSelectValue = elSelect.value.trim();
@@ -79,13 +85,7 @@ elForm.addEventListener("submit", function(evt){
   const elSelectSortValue = elSelectSort.value;
   
   
-  if(elFormInputValue == ""){
-    const searchMovie = pokemons.filter(item => (item.type.join(" ").match(regexCategory) || elSelctCatecoryValue === "All"));
-    sortFunc(pokemons, elSelectSortValue);
-    createElement(searchMovie.slice(0));
-  }
-  else{
-    const searchMovie = pokemons.filter(item => String(item.name).match(regexValue) && (elSelectValue === item.type.join("") || elSelectValue === "All"));
+    const searchMovie = pokemons.filter(item => String(item.name).match(regexValue) && (elSelectValue === item.type.join("") || elSelectValue === "All") && ( elInputStart.value == "" || item.candy_count >= elInputStart.value) && ( elInputEnd.value == "" || item.candy_count <= elInputEnd.value ) );
     
     sortFunc(searchMovie, elSelectSortValue);
     
@@ -96,7 +96,6 @@ elForm.addEventListener("submit", function(evt){
     }else{
       elMoviesList.innerHTML = "Not found !!!";
     }
-  }  
 })
 
 createElement(pokemons.slice(0, 10));
