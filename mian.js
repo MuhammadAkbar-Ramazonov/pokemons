@@ -1,4 +1,6 @@
 const elList = document.querySelector(".site-list");
+const elHero = document.querySelector(".hero");
+
 const elBody = document.querySelector("body");
 const elTemplate = document.querySelector(".site-template").content;
 const newPokemonFregment = document.createDocumentFragment();
@@ -11,6 +13,17 @@ const elInputEnd = document.querySelector(".js-end-input");
 const elSelectSort = document.querySelector(".site-select-sort");
 const weaknesSum = [];
 
+// bookmark
+const bookmarkBtn =  document.querySelector(".bookmark-open");
+const bookmarkList =  document.querySelector(".book-list");
+
+bookmarkBtn.addEventListener("click", evt => {
+  evt.preventDefault();
+  bookmarkList.classList.toggle("d-none");
+  bookmarkList.classList.length < 3 ? bookmarkBtn.textContent = ">" : bookmarkBtn.textContent = "<";
+  elHero.classList.toggle("bookmark-hero");
+  elBody.classList.toggle("bookmark-body")
+});
 
 function sortFunc(arr, select){
   if(select == "A-Z"){
@@ -44,7 +57,7 @@ function sortFunc(arr, select){
   }
 };
 
-function createElement(kino) {
+function createElement(kino, regex = "") {
   elList.innerHTML = "";
   
   kino.forEach(item => {
@@ -58,7 +71,13 @@ function createElement(kino) {
         elSelect.appendChild(elOption);
       } 
     });
-    elClonePekemon.querySelector(".pokemon-title").textContent = item.name;
+    if(regex.source != "(?:)" && regex){
+      elClonePekemon.querySelector(".pokemon-title").innerHTML = item.name.replace(regex, `<mark class="bg-warning">${regex.source.toLowerCase()}</mark>`);
+    } else {
+      elClonePekemon.querySelector(".pokemon-title").textContent = item.name;
+    }
+
+    // elClonePekemon.querySelector(".pokemon-title").textContent = item.name;
     elClonePekemon.querySelector(".pokemon-badge").textContent = item.num;
     elClonePekemon.querySelector(".pokemon-candy").textContent = item.candy_count;
 
@@ -70,13 +89,13 @@ function createElement(kino) {
     newPokemonFregment.appendChild(elClonePekemon);
   });
   elList.appendChild(newPokemonFregment);
+
 }
 
 elForm.addEventListener("submit", function(evt){
   evt.preventDefault();
   
   
-elInputEnd
   const elSelctCatecoryValue = elSelect.value;
   const elFormInputValue = elFormInput.value.trim();
   const elSelectValue = elSelect.value.trim();
@@ -92,7 +111,7 @@ elInputEnd
     createElement(searchMovie.slice(0));
     
     if (searchMovie.length > 0){
-      createElement(searchMovie);
+      createElement(searchMovie,  regexValue);
     }else{
       elMoviesList.innerHTML = "Not found !!!";
     }

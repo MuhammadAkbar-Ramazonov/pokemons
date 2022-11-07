@@ -1,3 +1,25 @@
+.pokemon-title {
+  text-transform: capitalize;
+}
+.bookmark-body {
+  overflow: hidden;
+}
+.bookmark-hero {
+  padding-right: 15px;
+  opacity: 0.6;
+}
+.book-list{
+  width: 300px;
+  height: 100%;
+  border-left: 2px solid black;
+  background: #fff;
+}
+.bookmark-wrapper{
+  height: 100%;
+  z-index: 3;
+  top: 8px;
+  right: calc(50% - 923px);
+}
 .pokemon-badge-wrapper {
   bottom: 44px;
   left: 104px;
