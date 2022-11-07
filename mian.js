@@ -14,16 +14,16 @@ const elSelectSort = document.querySelector(".site-select-sort");
 const weaknesSum = [];
 
 // bookmark
-const bookmarkBtn =  document.querySelector(".bookmark-open");
-const bookmarkList =  document.querySelector(".book-list");
+// const bookmarkBtn =  document.querySelector(".bookmark-open");
+// const bookmarkList =  document.querySelector(".book-list");
 
-bookmarkBtn.addEventListener("click", evt => {
-  evt.preventDefault();
-  bookmarkList.classList.toggle("d-none");
-  bookmarkList.classList.length < 3 ? bookmarkBtn.textContent = ">" : bookmarkBtn.textContent = "<";
-  elHero.classList.toggle("bookmark-hero");
-  elBody.classList.toggle("bookmark-body")
-});
+// bookmarkBtn.addEventListener("click", evt => {
+//   evt.preventDefault();
+//   bookmarkList.classList.toggle("d-none");
+//   bookmarkList.classList.length < 3 ? bookmarkBtn.textContent = ">" : bookmarkBtn.textContent = "<";
+//   elHero.classList.toggle("bookmark-hero");
+//   elBody.classList.toggle("bookmark-body")
+// });
 
 function sortFunc(arr, select){
   if(select == "A-Z"){
