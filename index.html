@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="./main.css">
 </head>
 <body class="bg-info">
@@ -67,7 +68,7 @@
 
 <template class="site-template">
   
-  <li class="pokemon-item d-flex flex-column justify-content-between align-items-center position-relative bg-gradient mb-4">
+  <li class="pokemon-item d-flex flex-column justify-content-between align-items-center position-relative bg-gradient mb-4"  data-aos="fade-up">
     <h3 class="pokemon-title d-block w-100 text-center text-white bg-success py-3"></h3>
     <div class="pokemon-badge-wrapper position-absolute badge bg-warning text-white" >id:
       <span class="pokemon-badge"></span>
@@ -82,6 +83,7 @@
 </template>
 
 <!-- site footer finish -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="./pokemons.js"></script>
 <script src="./mian.js"></script>
 </body>

@@ -11,19 +11,8 @@ const elInputStart = document.querySelector(".js-start-input");
 const elInputEnd = document.querySelector(".js-end-input");
 
 const elSelectSort = document.querySelector(".site-select-sort");
-const weaknesSum = [];
 
-// bookmark
-// const bookmarkBtn =  document.querySelector(".bookmark-open");
-// const bookmarkList =  document.querySelector(".book-list");
-
-// bookmarkBtn.addEventListener("click", evt => {
-//   evt.preventDefault();
-//   bookmarkList.classList.toggle("d-none");
-//   bookmarkList.classList.length < 3 ? bookmarkBtn.textContent = ">" : bookmarkBtn.textContent = "<";
-//   elHero.classList.toggle("bookmark-hero");
-//   elBody.classList.toggle("bookmark-body")
-// });
+AOS.init();
 
 function sortFunc(arr, select){
   if(select == "A-Z"){
@@ -57,30 +46,34 @@ function sortFunc(arr, select){
   }
 };
 
+const categorieSum = [];
+const result = [];
+
+function benom(arr) {
+  const set = new Set(arr)
+  for (const iterator of set) {
+    result.push(iterator)
+  }
+}
+
+
+
 function createElement(kino, regex = "") {
   elList.innerHTML = "";
   
   kino.forEach(item => {
     
     const elClonePekemon = elTemplate.cloneNode(true);
-    item.type.forEach(function(element){
-      if(!weaknesSum.includes(element)){
-        weaknesSum.push(element);
-        const elOption = document.createElement("option");
-        elOption.textContent = element;
-        elSelect.appendChild(elOption);
-      } 
-    });
+    categorieSum.push(item.type) 
     if(regex.source != "(?:)" && regex){
       elClonePekemon.querySelector(".pokemon-title").innerHTML = item.name.replace(regex, `<mark class="bg-warning">${regex.source.toLowerCase()}</mark>`);
     } else {
       elClonePekemon.querySelector(".pokemon-title").textContent = item.name;
     }
-
-    // elClonePekemon.querySelector(".pokemon-title").textContent = item.name;
+    
     elClonePekemon.querySelector(".pokemon-badge").textContent = item.num;
     elClonePekemon.querySelector(".pokemon-candy").textContent = item.candy_count;
-
+    
     elClonePekemon.querySelector(".pokemon-img").src = item.img;
     elClonePekemon.querySelector(".pokemon-img").width = "350";
     elClonePekemon.querySelector(".pokemon-img").height = "350";
@@ -89,8 +82,16 @@ function createElement(kino, regex = "") {
     newPokemonFregment.appendChild(elClonePekemon);
   });
   elList.appendChild(newPokemonFregment);
-
+  
+  benom(categorieSum.join(",").split(","))
+  result.forEach(element => {
+    const elOption = document.createElement("option");
+    elOption.textContent = element
+    elSelect.appendChild(elOption);
+  });
 }
+
+
 
 elForm.addEventListener("submit", function(evt){
   evt.preventDefault();
@@ -104,17 +105,17 @@ elForm.addEventListener("submit", function(evt){
   const elSelectSortValue = elSelectSort.value;
   
   
-    const searchMovie = pokemons.filter(item => String(item.name).match(regexValue) && (elSelectValue === item.type.join("") || elSelectValue === "All") && ( elInputStart.value == "" || item.candy_count >= elInputStart.value) && ( elInputEnd.value == "" || item.candy_count <= elInputEnd.value ) );
-    
-    sortFunc(searchMovie, elSelectSortValue);
-    
-    createElement(searchMovie.slice(0));
-    
-    if (searchMovie.length > 0){
-      createElement(searchMovie,  regexValue);
-    }else{
-      elMoviesList.innerHTML = "Not found !!!";
-    }
+  const searchMovie = pokemons.filter(item => String(item.name).match(regexValue) && (elSelectValue === item.type.join("") || elSelectValue === "All") && ( elInputStart.value == "" || item.candy_count >= elInputStart.value) && ( elInputEnd.value == "" || item.candy_count <= elInputEnd.value ) );
+  
+  sortFunc(searchMovie, elSelectSortValue);
+  
+  createElement(searchMovie.slice(0));
+  
+  if (searchMovie.length > 0){
+    createElement(searchMovie,  regexValue);
+  }else{
+    elMoviesList.innerHTML = "Not found !!!";
+  }
 })
 
 createElement(pokemons.slice(0, 10));
